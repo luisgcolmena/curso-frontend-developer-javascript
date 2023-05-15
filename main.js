@@ -4,6 +4,7 @@ const menuIcon = document.querySelector(".menu")
 const mobileMenu = document.querySelector(".mobile-menu")
 const shoppingCart = document.querySelector(".navbar-shopping-cart")
 const productDetail = document.querySelector(".product-detail")
+const cardsContainer = document.querySelector(".cards-container")
 
 navbarEmail.addEventListener('click', toggleDesktopMenu)
 menuIcon.addEventListener('click', toggleMobileMenu)
@@ -14,7 +15,7 @@ function toggleDesktopMenu () {
 
     if (!productDetail.classList.contains("inactive")) {
         productDetail.classList.toggle("inactive")
-    }   
+    }
 }
 
 function toggleMobileMenu () {
@@ -37,3 +38,63 @@ function toggleProductDetail () {
         desktopMenu.classList.toggle("inactive")
     }
 }
+
+const productList = []
+
+productList.push({
+    name: "Bike",
+    price: "120,00$",
+    img: "https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+})
+
+productList.push({
+    name: "PC",
+    price: "520,00$",
+    img: "https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+})
+
+productList.push({
+    name: "Console",
+    price: "420,00$",
+    img: "https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+})
+
+function renderProducts (arr) {
+
+    for (product of arr) {
+        /* Creando el tag div "product-card" y asignandole su respectiva clase*/
+        const productCard = document.createElement("div")
+        productCard.classList.add("product-card")
+    
+        /* Creando el tag img */
+        const productImg = document.createElement("img")
+        productImg.setAttribute('src', product.img)
+
+        /* Creando el tag div "product-info" y asignandole su respectiva clase*/
+        const productInfo = document.createElement("div")
+        productInfo.classList.add("product-info")
+
+        /* Creando el tag div que contiene la info del producto*/
+        const productText = document.createElement("div")
+
+        const productPrice = document.createElement("p")
+        productPrice.innerHTML = "$" + product.price
+
+        const productName = document.createElement("p")
+        productName.innerHTML = product.name
+
+        /* Creando el tag figure */
+        const productFig = document.createElement("figure")
+        const figureImg = document.createElement("img")
+        figureImg.setAttribute('src', "./icons/bt_add_to_cart.svg")
+
+        /* Estableciendo la jerarquia de los tags */
+        productFig.appendChild(figureImg)
+        productText.append(productPrice, productName)
+        productInfo.append(productFig,productText)
+        productCard.append(productImg, productInfo)
+        cardsContainer.append(productCard)
+    }
+}
+
+renderProducts(productList)
