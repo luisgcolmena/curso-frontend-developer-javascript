@@ -11,11 +11,16 @@ shoppingCart.addEventListener('click', toggleProductDetail)
 
 function toggleDesktopMenu () {
     desktopMenu.classList.toggle("inactive")
+
+    if (!productDetail.classList.contains("inactive")) {
+        productDetail.classList.toggle("inactive")
+    }   
 }
 
 function toggleMobileMenu () {
     mobileMenu.classList.toggle("inactive")
 
+    //Si el menu del shopping cart esta activo, se desactiva con el onClick() al mobile menu.
     if (!productDetail.classList.contains("inactive")) {
         productDetail.classList.toggle("inactive")
     }    
@@ -26,5 +31,9 @@ function toggleProductDetail () {
 
     if (!mobileMenu.classList.contains("inactive")) {
         mobileMenu.classList.toggle("inactive")
+    }
+
+    if (!desktopMenu.classList.contains("inactive")) {
+        desktopMenu.classList.toggle("inactive")
     }
 }
